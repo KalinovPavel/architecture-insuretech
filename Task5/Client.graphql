@@ -1,0 +1,43 @@
+# Корневой объект схемы
+schema {
+  query: Query
+}
+
+# Главный тип запросов
+type Query {
+
+  # Получить данные клиента (ID — обязательный аргумент)
+  # Возвращает объект Client со всеми или некоторыми полями
+  # (выбираем нужные поля в GraphQL-запросе).
+  client(id: ID!): Client  
+}
+
+# Тип "Client" (соответствует Swagger-модели Client)
+type Client {
+  id: ID!
+  name: String
+  age: Int
+
+  # Связанные документы клиента
+  documents: [Document]
+
+  # Родственники клиента
+  relatives: [Relative]
+}
+
+# Тип "Document" — Swagger Document
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+# Тип "Relative" — Swagger Relative
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
